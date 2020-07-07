@@ -7,13 +7,13 @@ const router = new KoaRouter();
 
 
 
-router.get("/", async (ctx) => {
+router.get("/", async (ctx: Koa.Context) => {
 	ctx.body = "Hello world!";
 });
 
 
-router.get("/hello/:name", async (ctx) => {
-	let name = ctx.params.name;
+router.get("/hello/:name", async (ctx: Koa.Context) => {
+	let name: String = ctx.params.name;
 	ctx.body = `Hello ${name}!`;
 });
 
