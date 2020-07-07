@@ -1,0 +1,19 @@
+{
+	"name": "koa-test",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "tsnd --respawn app.ts"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"koa": "^2.13.0",
+		"koa-router": "^9.1.0",
+		"typescript": "^3.9.6"
+	},
+	"devDependencies": {
+		"ts-node-dev": "^1.0.0-pre.50"
+	}
+}
