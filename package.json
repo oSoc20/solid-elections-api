@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "app.ts",
 	"scripts": {
-		"dev": "tsnd --respawn app.ts"
+		"dev": "tsnd --respawn src/app.ts"
 	},
 	"author": "",
 	"license": "MIT",
