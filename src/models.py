@@ -24,6 +24,5 @@ class BaseModel(Model):
 
 
 class WebID(BaseModel):
-	name = CharField()
 	uri = CharField()
-	uploaded_date = DateTimeField(default=datetime.datetime.now)
+	date_created = DateTimeField(default=datetime.datetime.now)
