@@ -1,4 +1,5 @@
-database.json
+src/secret.py
 
 .venv/
+.vscode/
 src/__pycache__/
