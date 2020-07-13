@@ -1,4 +1,6 @@
-from peewee import Model, PostgresqlDatabase, CharField, IntegerField
+from peewee import Model, PostgresqlDatabase, CharField, DateTimeField
+import datetime
+
 import secret
 
 # TODO: peewee's docs mention a middleware thing for sanic, but it seems to want to reconnect to the database for every request? Maybe check it out
@@ -21,5 +23,7 @@ class BaseModel(Model):
 		database = db
 
 
-class Person(BaseModel):
+class WebID(BaseModel):
 	name = CharField()
+	uri = CharField()
+	uploaded_date = DateTimeField(default=datetime.datetime.now)
