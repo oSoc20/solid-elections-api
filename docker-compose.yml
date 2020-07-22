@@ -15,6 +15,7 @@ services:
       - PG_DBNAME=${PG_DBNAME}
       - PG_USER=${PG_USER}
       - PG_PASS=${PG_PASS}
+      - SPARQL_URL=${SPARQL_URL}
 
   db:
     image: postgres:alpine
