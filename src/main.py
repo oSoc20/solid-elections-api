@@ -76,10 +76,10 @@ async def get_handler(req):
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     PREFIX persoon: <http://data.vlaanderen.be/ns/persoon#>
     PREFIX mandaat:<http://data.vlaanderen.be/ns/mandaat#>
-        SELECT DISTINCT ?firstName ?familyName ?label
+        SELECT DISTINCT ?firstName ?familyName ?listName
         WHERE {
             ?list rdf:type mandaat:Kandidatenlijst;
-            skos:prefLabel ?label;
+            skos:prefLabel ?listName;
             mandaat:heeftKandidaat ?person.
             ?person persoon:gebruikteVoornaam ?firstName ;
             foaf:familyName ?familyName .
