@@ -24,9 +24,9 @@ async def r_store(req):
     try:
         web_id.save()
     except IntegrityError:  # Thrown when you try to add an existing unique value
-        return response.text('WebID already exists in database')
+        return response.json({'success': False, 'message': 'WebID already exists in database'}, status=400)
 
-    return response.text('WebID succesfully added to the database!')
+    return response.json({'success': True, 'message': 'WebID succesfully added to the database!'})
 
 
 @app.route('/get')
