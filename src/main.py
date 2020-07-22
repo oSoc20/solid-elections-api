@@ -72,9 +72,15 @@ async def get_handler(req):
 
     query = """
     PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     PREFIX persoon: <http://data.vlaanderen.be/ns/persoon#>
-        SELECT DISTINCT ?firstName ?familyName
+    PREFIX mandaat:<http://data.vlaanderen.be/ns/mandaat#>
+        SELECT DISTINCT ?firstName ?familyName ?label
         WHERE {
+            ?list rdf:type mandaat:Kandidatenlijst;
+            skos:prefLabel ?label;
+            mandaat:heeftKandidaat ?person.
             ?person persoon:gebruikteVoornaam ?firstName ;
             foaf:familyName ?familyName .
     }"""
