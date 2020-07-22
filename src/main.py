@@ -68,7 +68,7 @@ async def r_get(req, name):
 
 @app.route('/candidates', methods=['GET'])
 async def get_handler(req):
-    URL = 'http://api.sep.osoc.be:8890/sparql'
+    sparql_db_url = environ.get('SPARQL_DBNAME')
 
     query = """
     PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -85,7 +85,7 @@ async def get_handler(req):
             foaf:familyName ?familyName .
     }"""
     query_response = requests.get(
-            URL,
+            sparql_db_url,
             params={
                 "default-graph-uri": "http://api.sep.osoc.be/mandatendatabank",
                 "format": "json",
