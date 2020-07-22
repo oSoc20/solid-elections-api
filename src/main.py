@@ -6,6 +6,8 @@ import models
 from rdflib import Graph, RDF
 from rdflib.namespace import FOAF
 from os import environ
+import requests
+import json
 
 app = Sanic('Test API')
 app.blueprint(swagger_blueprint)
@@ -62,6 +64,32 @@ async def r_get(req, name):
                 break
 
     return response.json(valid_web_ids)
+
+
+@app.route('/candidates', methods=['GET'])
+async def get_handler(req):
+    URL = 'http://api.sep.osoc.be:8890/sparql'
+
+    query = """
+    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+    PREFIX persoon: <http://data.vlaanderen.be/ns/persoon#>
+        SELECT DISTINCT ?firstName ?familyName
+        WHERE {
+            ?person persoon:gebruikteVoornaam ?firstName ;
+            foaf:familyName ?familyName .
+    }"""
+    query_response = requests.get(
+            URL,
+            params={
+                "default-graph-uri": "http://api.sep.osoc.be/mandatendatabank",
+                "format": "json",
+                "query": query
+            }
+        )
+    json_response = json.loads(
+        query_response.content.decode('utf-8')
+    )
+    return response.json(json_response['results']['bindings'])
 
 
 def get_web_ids():
