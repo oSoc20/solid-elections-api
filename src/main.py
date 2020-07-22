@@ -1,5 +1,6 @@
 from sanic import Sanic, response
 from sanic_openapi import doc, swagger_blueprint
+from sanic_cors import CORS
 from playhouse.shortcuts import model_to_dict
 from peewee import IntegrityError
 import models
@@ -13,6 +14,7 @@ app = Sanic('Test API')
 app.blueprint(swagger_blueprint)
 app.config["API_TITLE"] = "Solid Elections API"
 app.config["API_DESCRIPTION"] = "API documentation of the Solid Elections API"
+CORS(app)
 
 
 @app.route('/store/', methods=['POST'])
@@ -24,9 +26,9 @@ async def r_store(req):
     try:
         web_id.save()
     except IntegrityError:  # Thrown when you try to add an existing unique value
-        return response.text('WebID already exists in database')
+        return response.json({'success': False, 'message': 'WebID already exists in database'}, status=400)
 
-    return response.text('WebID succesfully added to the database!')
+    return response.json({'success': True, 'message': 'WebID succesfully added to the database!'})
 
 
 @app.route('/get')
