@@ -86,8 +86,25 @@ async def r_get(req):
     """
     Get all stored webIDs in the database.
 
-    :return:
+    Returns:
+    The response contains a list of json objects with fields 'id', 'uri', 'lblod_id', 'date_created'.
+    Each object corresponds with an entry stored in the database.
+        'id' represents the id of the entry.
+        'uri' contains the uri of the webID.
+        'lblod' contains the uri of a person in the database of data.vlaanderen.be .
+        'date_created' contains the date on which the entry was added to the database.
+
+        Example:
+            [
+                {
+                    "id": 1,
+                    "uri": "https://jonasvervloet.inrupt.net/profile/card#me",
+                    "lblod_id": "http://data.lblod.info/id/personen/41e449eafddf2c0c2365a294376780293d92fb401241589a1f403cdff8d2ce5a",
+                    "date_created": "2020-07-27T16:44:10.177264"
+                }
+            ]
     """
+
     return response.json(get_web_ids())
 
 
