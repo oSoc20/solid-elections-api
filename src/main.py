@@ -58,36 +58,6 @@ async def r_get(req):
     return response.json(get_web_ids())
 
 
-@app.route('/get/<name>')
-@doc.summary("get web id filtered by name")
-@doc.description("This endpoint can be used to filter the web id's based on their name.")
-async def r_get(req, name):
-    web_ids = get_web_ids()
-
-    valid_web_ids = []
-    for web_id in web_ids:
-        uri = web_id['uri']
-        graph = Graph()
-        graph.parse(uri)
-
-        web_id_added = False
-        # get all Persons in the solid pod and loop over them
-        for person in graph.subjects(RDF.type, FOAF.Person):
-            # get all names of these Persons and loop over them
-            for web_id_name in graph.objects(person, FOAF.name):
-                # check if the name on the solid pod equals the given name
-                if check_equal_names(name, str(web_id_name)):
-                    valid_web_ids.append(web_id)
-                    web_id_added = True
-                    break
-
-            # make sure the web id is only added once to the list
-            if web_id_added:
-                break
-
-    return response.json(valid_web_ids)
-
-
 @app.route('/cities', methods=['GET'])
 async def get_handler(req):
     cities = helper_sparql.get_lblod_cities()
