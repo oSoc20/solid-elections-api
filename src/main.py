@@ -33,8 +33,34 @@ async def handle_response(request, response):
 
 @app.route('/store/', methods=['POST'])
 @doc.summary("store a new web id")
-async def r_store(req):\
-        # Get 'uri' and 'lblod_id' from JSON body and throw HTTP/400 if one of them is missing
+async def r_store(req):
+    """
+    Store a new webID in the database given a valid webID uri and a lblod uri.
+
+    Keyword arguments:
+    The request should contain valid json parameters for 'uri' and 'lblod'.
+        Example:
+            {
+                "uri": "https://jonasvervloet.inrupt.net/profile/card#me",
+                "lblod_id": "http://data.lblod.info/id/personen/41e449eafddf2c0c2365a294376780293d92fb401241589a1f403cdff8d2ce5a"
+            }
+
+    Returns:
+    The response contains json name/value pairs 'success', 'updated' and 'message'.
+        'success' denotes if the right query parameters are available and if they are valid.
+        'updated' denotes if the webID uri and lblod uri pair is stored in the database.
+            This is set to False when the webID uri is already used in the database.
+        'message' clarifies the response.
+
+        Example:
+            {
+                'success': True
+                'updated': True
+                'message': "WebID successfully added tot the database!"
+            }
+    """
+
+    # Get 'uri' and 'lblod_id' from JSON body and throw HTTP/400 if one of them is missing
     uri = req.json.get('uri')
     lblod_id = req.json.get('lblod_id')
     if not uri or not lblod_id:
@@ -57,6 +83,11 @@ async def r_store(req):\
 @doc.summary("get all the web id's")
 @doc.description("This endpoints can be used to retrieve all the web id's that are stored in the database")
 async def r_get(req):
+    """
+    Get all stored webIDs in the database.
+
+    :return:
+    """
     return response.json(get_web_ids())
 
 
