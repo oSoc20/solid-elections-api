@@ -350,6 +350,33 @@ async def get_handler(req):
 
 
 def get_web_ids():
+    """
+    Get all the webIDs in the database.
+
+    Returns:
+    A list containing a dictionary with keys 'id', 'uri', 'lblod_id' and 'date_created'.
+        'id' contains the id of the entry.
+        'uri' contains the webID  uri of the entry.
+        'lblod_id' contains the uri of the person to which the entry links.
+        'date_created' contains the date on which the entry was added to the database.
+
+        Example:
+            [
+                {
+                    "id": 46,
+                    "uri": "https://bert1.solid.community/profile/card#me",
+                    "lblod_id": "http://data.lblod.info/id/personen/ed820a7da8c187ddb58a662737d9171d7522740b1c7727501d44d17c09b9afa8",
+                    "date_created": "2020-07-27T15:43:23.874075"
+                },
+                {
+                    "id": 73,
+                    "uri": "https://kakumi.inrupt.net/profile/card#me",
+                    "lblod_id": "http://data.lblod.info/id/personen/8fc807a40c2b8a67726f490272ca72256fa944e4bdcc29c846a1498abfebe034",
+                    "date_created": "2020-07-28T12:11:03.584871"
+                },
+            ]
+    """
+
     web_ids = models.WebID.select()
 
     # Convert list of ModelSelect objects to Python dicts
@@ -361,6 +388,17 @@ def get_web_ids():
 
 
 def get_web_id(lblod_id):
+    """
+    Get the webID uri for a given lblod id.
+
+    Keyword arguments:
+    lblod_id -- the lblod ID that is stored in the database
+        This function will raise a 'DoesNotExist' exception when no entry in the database contains the ID.
+
+    Returns
+    A string that contains the webID uri of the entry in the database that matches the given lblod ID.
+    """
+    
     web_id = models.WebID.get(models.WebID.lblod_id == lblod_id)
     return web_id.uri
 
