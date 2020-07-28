@@ -280,6 +280,56 @@ async def get_handler(req):
 
 @app.route('/person', methods=['GET'])
 async def get_handler(req):
+    """
+    Get info about a person given the persons' uri.
+
+    Keyword arguments:
+    The request should contain a valid parameter for 'personURI'.
+        Example:
+            /person?lblodURI=http://data.lblod.info/id/personen/4bfe62e576c4f955a3080ad38a213a66a8896e7ac9e6029b5185947b1c8427cc
+
+    Returns:
+    The result contains two value/name pairs: 'success' and 'result'.
+        'success' denotes whether the request was handled successfully.
+            This is set to False when the required parameters are not present.
+        'result' contains the actual result that is a list of json objects that contain 'name', 'familyName', 'familyName', 'listURI', 'listName', 'trackingNb'.
+            The list can contain multiple entries when the person campaigned for multiple lists.
+
+            'name' contains the name of the person.
+            'familyName' contains the family name of the person.
+            'listURI' contains uri of a list where the person is on.
+            'listName' contains the name of the list.
+            'trackingNb' contains the tracking number of the list.
+
+        Example:
+            {
+                "success": true,
+                "result": [
+                    {
+                        "name": {
+                            "type": "literal",
+                            "value": "Nabilla"
+                        },
+                        "familyName": {
+                            "type": "literal",
+                            "value": "Ait Daoud"
+                        },
+                        "listURI": {
+                            "type": "uri",
+                            "value": "http://data.lblod.info/id/kandidatenlijsten/078a1ef8-0875-48b2-b8fc-6167f5cfa3c0"
+                        },
+                        "listName": {
+                            "type": "literal",
+                            "value": "N-VA"
+                        },
+                        "trackingNb": {
+                            "type": "literal",
+                            "value": "2"
+                        }
+                    }
+                ]
+            }
+    """
     try:
         person_uri = req.args['personURI'][0]
     except KeyError:
