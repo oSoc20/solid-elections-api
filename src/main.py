@@ -22,11 +22,11 @@ CORS(app)
 async def handle_request(request):
     models.db.connect()
 
+
 @app.middleware('response')
 async def handle_response(request, response):
     if not models.db.is_closed():
         models.db.close()
-
 
 
 @app.route('/store/', methods=['POST'])
