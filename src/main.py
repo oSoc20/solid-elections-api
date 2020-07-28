@@ -1,13 +1,15 @@
+"""
+This module defines and implements all the endpoints of the API.
+"""
+
 from sanic import Sanic, response
 from sanic_openapi import doc, swagger_blueprint
 from sanic_cors import CORS
 from playhouse.shortcuts import model_to_dict
 from peewee import IntegrityError, DoesNotExist
-import models
-from rdflib import Graph, RDF
-from rdflib.namespace import FOAF
 from os import environ
 
+import models
 import helper_sparql
 
 app = Sanic('Test API')
