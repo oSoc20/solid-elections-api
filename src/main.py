@@ -164,7 +164,8 @@ async def get_handler(req):
     Returns:
     The result contains two value/name pairs: 'success' and 'result'.
         'success' denotes whether the request was handled successfully.
-        'result' contains the actual result that is a list of json objects that contain 'listURI', 'listName'.
+            This is set to False when the required parameters are not present.
+        'result' contains the actual result that is a list of json objects that contain 'listURI' and 'listName'.
             'listURI' contains the uri of the list which can be used to identify the list.
             'listName' contains the name of the list.
 
@@ -205,6 +206,50 @@ async def get_handler(req):
 
 @app.route('/candidates', methods=['GET'])
 async def get_handler(req):
+    """
+    Get all candidates that are on a given list.
+
+    Keyword arguments:
+    The request should contain a valid parameter for 'listURI'.
+        Example:
+            /candidates?listURI=http://data.lblod.info/id/kandidatenlijsten/078a1ef8-0875-48b2-b8fc-6167f5cfa3c0
+
+    Returns:
+    The result contains two value/name pairs: 'success' and 'result'.
+        'success' denotes whether the request was handled successfully.
+            This is set to False when the required parameters are not present.
+        'result' contains the actual result that is a list of json objects that contain 'personURI', 'name', 'familyName', <optional>'webID'.
+            'personURI' contains the uri of the person which can be used to identify the list.
+            'name' contains the name of the person.
+            'familyName' contains the family name of the person.
+            'webID'<optional> contains the webID uri that is linked to the person.
+                This webID field is only present if there is an entry in our database with the personURI.
+
+        Example:
+            {
+                "success": true,
+                "result": [
+                    {
+                        "personURI": {
+                            "type": "uri",
+                            "value": "http://data.lblod.info/id/personen/ed820a7da8c187ddb58a662737d9171d7522740b1c7727501d44d17c09b9afa8"
+                        },
+                        "name": {
+                            "type": "literal",
+                            "value": "Bart"
+                        },
+                        "familyName": {
+                            "type": "literal",
+                            "value": "Tommelein"
+                        },
+                        "webID": {
+                            "type": "literal",
+                            "value": "https://bert1.solid.community/profile/card#me"
+                        }
+                    }
+                ]
+            }
+    """
     try:
         list_uri = req.args['listURI'][0]
     except KeyError:
