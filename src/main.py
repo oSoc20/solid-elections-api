@@ -58,7 +58,7 @@ async def r_store(req):
             {
                 'success': True
                 'updated': True
-                'message': "WebID successfully added tot the database!"
+                'message': "WebID successfully added to the database!"
             }
     """
 
