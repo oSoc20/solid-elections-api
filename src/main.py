@@ -91,7 +91,7 @@ async def r_get(req):
     Each object corresponds with an entry stored in the database.
         'id' represents the id of the entry.
         'uri' contains the uri of the webID.
-        'lblod' contains the uri of a person in the database of data.vlaanderen.be .
+        'lblod' contains the uri of a person in the database.
         'date_created' contains the date on which the entry was added to the database.
 
         Example:
@@ -110,6 +110,37 @@ async def r_get(req):
 
 @app.route('/cities', methods=['GET'])
 async def get_handler(req):
+    """
+    Get all the cities in the database.
+
+    Returns:
+    The result contains two value/name pairs: 'success' and 'result'.
+        'success' denotes whether the request was handled successfully.
+        'result' contains the actual result and is a list of json objects that contain:
+            'cityURI' contains the uri of the city which can be used to identify the city.
+            'cityName' contains the name of the city.
+            'locationLabel' denotes the type of location (Gemeente/Provincie/District).
+
+        Example:
+            {
+                "success": true,
+                "result": [
+                    {
+                        "cityURI": {
+                            "type": "uri",
+                            "value": "http://data.lblod.info/id/bestuurseenheden/81a6c688-9d4e-4905-b5af-c8b2386516e5"
+                        },
+                        "cityName": {
+                            "type": "literal",
+                            "value": "Puurs-Sint-Amands"
+                        },
+                        "locationLabel": {
+                            "type": "literal",
+                            "value": "Gemeente"
+                    }
+                ]
+            }
+    """
     cities = helper_sparql.get_lblod_cities()
     return response.json(
         {
