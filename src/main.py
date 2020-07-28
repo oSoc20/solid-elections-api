@@ -398,14 +398,9 @@ def get_web_id(lblod_id):
     Returns
     A string that contains the webID uri of the entry in the database that matches the given lblod ID.
     """
-    
+
     web_id = models.WebID.get(models.WebID.lblod_id == lblod_id)
     return web_id.uri
-
-
-def check_equal_names(name1, name2):
-    # TODO: check for small typo's?
-    return name1 == name2
 
 
 if __name__ == '__main__':
