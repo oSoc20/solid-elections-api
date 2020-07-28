@@ -116,7 +116,7 @@ async def get_handler(req):
     Returns:
     The result contains two value/name pairs: 'success' and 'result'.
         'success' denotes whether the request was handled successfully.
-        'result' contains the actual result and is a list of json objects that contain:
+        'result' contains the actual result that is a list of json objects that contain 'cityURI', 'cityName' and 'locationLabel'.
             'cityURI' contains the uri of the city which can be used to identify the city.
             'cityName' contains the name of the city.
             'locationLabel' denotes the type of location (Gemeente/Provincie/District).
@@ -152,6 +152,38 @@ async def get_handler(req):
 
 @app.route('/lists', methods=['GET'])
 async def get_handler(req):
+    """
+    Get all lists that are active for a given city.
+
+
+    Keyword arguments:
+    The request should contain a valid parameter for 'cityURI'.
+        Example:
+            /lists?cityURI=http://data.lblod.info/id/werkingsgebieden/39173049fa95c468999d3862c3e6d22184c604d0864d6e56d1660886e17ca3c7
+
+    Returns:
+    The result contains two value/name pairs: 'success' and 'result'.
+        'success' denotes whether the request was handled successfully.
+        'result' contains the actual result that is a list of json objects that contain 'listURI', 'listName'.
+            'listURI' contains the uri of the list which can be used to identify the list.
+            'listName' contains the name of the list.
+
+        Example:
+            {
+                "success": true,
+                "result": [
+                    {
+                        "listURI": {
+                            "type": "uri",
+                            "value": "http://data.lblod.info/id/kandidatenlijsten/091e6c1f-39b7-4ab4-8779-2f8ce77096b5"
+                        },
+                        "listName": {
+                            "type": "literal",
+                            "value": "OK"
+                    }
+                ]
+            }
+    """
     try:
         city_uri = req.args['cityURI'][0]
     except KeyError:
