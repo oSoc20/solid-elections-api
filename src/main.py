@@ -20,11 +20,13 @@ CORS(app)
 # Middleware to automatically open/close a database connection for every request
 @app.middleware('request')
 async def handle_request(request):
+    """Open database connection before each request is handled."""
     models.db.connect()
 
 
 @app.middleware('response')
 async def handle_response(request, response):
+    """Close database connection after each request is handled."""
     if not models.db.is_closed():
         models.db.close()
 
