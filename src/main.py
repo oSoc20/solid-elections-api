@@ -391,7 +391,7 @@ def get_web_id(lblod_id):
     Get the webID uri for a given lblod id.
 
     Keyword arguments:
-    lblod_id -- string that represents the lblod ID that is stored in the database
+    lblod_id -- string that represents the lblod ID that is stored in the database.
         This function will raise a "DoesNotExist" exception when no entry in the database contains the ID.
 
     Returns
