@@ -115,7 +115,7 @@ async def r_get(req):
 
 @app.route('/cities', methods=['GET'])
 @doc.summary("Get all the cities in the database.")
-@doc.produces(doc_models.CityResponse, "The response gives the success of the request as well as the result of the request.")
+@doc.produces(doc_models.CityResponse, description="The response gives the success of the request as well as the result of the request.")
 async def get_handler(req):
     """
     Get all the cities in the database.
@@ -159,6 +159,8 @@ async def get_handler(req):
 
 @app.route('/lists', methods=['GET'])
 @doc.summary("Get all lists that are active for a given city.")
+@doc.consumes(doc.String(name="cityURI"), location="query")
+@doc.produces(doc_models.ListResponse, description="The response gives the success of the request as well as the result of the request.")
 async def get_handler(req):
     """
     Get all lists that are active for a given city.

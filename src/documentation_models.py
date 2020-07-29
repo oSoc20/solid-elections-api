@@ -33,3 +33,13 @@ class CityResponseEntry:
 class CityResponse:
     success = doc.Boolean("Boolean")
     result = doc.List(CityResponseEntry, "List of all the cities.")
+
+
+class ListResponseEntry:
+    listURI = TypeValuePair
+    listName = TypeValuePair
+
+
+class ListResponse:
+    success = doc.Boolean("Boolean")
+    result = doc.List(ListResponseEntry, "List of all the cities.")
