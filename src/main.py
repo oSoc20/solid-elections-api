@@ -292,6 +292,7 @@ async def get_handler(req):
 
 
 @app.route('/person', methods=['GET'])
+@doc.summary("Get info about a person given the persons' uri.")
 @doc.consumes(doc.String(name="lblodURI", description="URI of the person of which the info will be searched."), location="query")
 @doc.produces(doc_models.CandidateResponse, description="The response gives the success of the request as well as the result of the request.")
 async def get_handler(req):
