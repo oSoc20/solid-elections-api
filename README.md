@@ -28,4 +28,4 @@ docker service update --image solidelections/api solid-elections-api_api
 
 ## Automatic documentation
 Documentation about the api is automatically generated and is available at ./swagger when the server is running.
-See the [documentation!](https://sanic-openapi.readthedocs.io/en/stable/index.html) for info on how to modify the documentation.
+See their [documentation](https://sanic-openapi.readthedocs.io/en/stable/index.html) for info on how to modify the api documentation.
