@@ -1,5 +1,5 @@
 # SolidElections API
-Hackathon project for the Simplification Election Procedures team. This API simply stores a WebID and returns a list of stored WebIDs, which can be used to fetch Solid documents.
+API subproject for the Simplification Election Procedures team. This API simply stores a WebID and returns a list of stored WebIDs, which can be used to fetch Solid documents.
 
 
 ## Setup (development)
