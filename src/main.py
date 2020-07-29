@@ -6,8 +6,10 @@ from sanic import Sanic, response
 from sanic_openapi import doc, swagger_blueprint
 from sanic_cors import CORS
 from playhouse.shortcuts import model_to_dict
-from peewee import IntegrityError, DoesNotExist
+from peewee import IntegrityError, OperationalError, DoesNotExist
 from os import environ
+import sys
+from time import sleep
 
 import models
 import helper_sparql
@@ -416,6 +418,14 @@ def get_web_id(lblod_id):
 
 if __name__ == '__main__':
     # Connect to database & create tables if necessary
-    models.db.create_tables([models.WebID])
+    for i in range(1, 101):
+        try:
+            models.db.create_tables([models.WebID])
+            break
+        except OperationalError:
+            sys.stderr.write(f'Could not connect to postgres database, retrying... (attempt {i}/30)\n')
+            sys.stderr.flush()
+            sleep(0.5)
+
     models.db.close()
     app.run(host='0.0.0.0', port=8000, debug=environ.get('DEBUG'))
