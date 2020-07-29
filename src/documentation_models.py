@@ -31,7 +31,7 @@ class CityResponseEntry:
 
 
 class CityResponse:
-    success = doc.Boolean("Boolean")
+    success = doc.Boolean("Success of the request.")
     result = doc.List(CityResponseEntry, "List of all the cities.")
 
 
@@ -41,5 +41,29 @@ class ListResponseEntry:
 
 
 class ListResponse:
-    success = doc.Boolean("Boolean")
+    success = doc.Boolean("Success of the request.")
     result = doc.List(ListResponseEntry, "List of all the cities.")
+
+
+class CandidateResponseEntry:
+    personURI = TypeValuePair
+    name = TypeValuePair
+    familyName = TypeValuePair
+    webID = TypeValuePair
+
+
+class CandidateResponse:
+    success = doc.Boolean("Success of the request.")
+    result = doc.List(CandidateResponseEntry, "List of all the candidates.")
+
+
+class PersonResponseEntry:
+    name = TypeValuePair
+    familyName = TypeValuePair
+    listURI = TypeValuePair
+    listName = TypeValuePair
+    trackingNb = TypeValuePair
+
+class CandidateResponse:
+    success = doc.Boolean("Success of the request.")
+    result = doc.List(CandidateResponseEntry, "List of all the list on which the person is present.")

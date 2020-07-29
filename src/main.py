@@ -86,7 +86,6 @@ async def r_store(req):
 
 @app.route('/get')
 @doc.summary("Get all stored webIDs in the database.")
-@doc.description("This endpoints can be used to retrieve all the WebIDs that are stored in the database.")
 @doc.produces(doc.List(doc_models.GetResponseEntry), description="List of all entries in the database.")
 async def r_get(req):
     """
@@ -159,7 +158,7 @@ async def get_handler(req):
 
 @app.route('/lists', methods=['GET'])
 @doc.summary("Get all lists that are active for a given city.")
-@doc.consumes(doc.String(name="cityURI"), location="query")
+@doc.consumes(doc.String(name="cityURI", description="URI of the city of which all the lists will be searched."), location="query")
 @doc.produces(doc_models.ListResponse, description="The response gives the success of the request as well as the result of the request.")
 async def get_handler(req):
     """
@@ -215,6 +214,8 @@ async def get_handler(req):
 
 @app.route('/candidates', methods=['GET'])
 @doc.summary("Get all candidates that are on a given list.")
+@doc.consumes(doc.String(name="listURI", description="URI of the list of which all the candidates will be searched."), location="query")
+@doc.produces(doc_models.CandidateResponse, description="The response gives the success of the request as well as the result of the request.")
 async def get_handler(req):
     """
     Get all candidates that are on a given list.
@@ -289,13 +290,14 @@ async def get_handler(req):
 
 
 @app.route('/person', methods=['GET'])
-@doc.summary("Get info about a person given the persons' uri.")
+@doc.consumes(doc.String(name="lblodURI", description="URI of the person of which the info will be searched."), location="query")
+@doc.produces(doc_models.CandidateResponse, description="The response gives the success of the request as well as the result of the request.")
 async def get_handler(req):
     """
     Get info about a person given the persons' uri.
 
     Keyword arguments:
-    The request should contain a valid parameter for "personURI".
+    The request should contain a valid parameter for "lblodURI".
         Example:
             /person?lblodURI=http://data.lblod.info/id/personen/4bfe62e576c4f955a3080ad38a213a66a8896e7ac9e6029b5185947b1c8427cc
 
