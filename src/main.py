@@ -40,7 +40,7 @@ async def r_store(req):
     Store a new webID in the database given a valid webID uri and a lblod uri.
 
     Keyword arguments:
-    The request should contain valid json parameters for 'uri' and 'lblod'.
+    The request should contain valid json parameters for "uri" and "lblod".
         Example:
             {
                 "uri": "https://jonasvervloet.inrupt.net/profile/card#me",
@@ -48,17 +48,17 @@ async def r_store(req):
             }
 
     Returns:
-    The response contains json name/value pairs 'success', 'updated' and 'message'.
-        'success' denotes if the right query parameters are available and if they are valid.
-        'updated' denotes if the webID uri and lblod uri pair is stored in the database.
+    The response contains json name/value pairs "success", "updated" and "message".
+        "success" denotes if the right query parameters are available and if they are valid.
+        "updated" denotes if the webID uri and lblod uri pair is stored in the database.
             This is set to False when the webID uri is already used in the database.
-        'message' clarifies the response.
+        "message" clarifies the response.
 
         Example:
             {
-                'success': True
-                'updated': True
-                'message': "WebID successfully added to the database!"
+                "success": True,
+                "updated": True,
+                "message": "WebID successfully added to the database!"
             }
     """
 
@@ -89,12 +89,12 @@ async def r_get(req):
     Get all stored webIDs in the database.
 
     Returns:
-    The response contains a list of json objects with fields 'id', 'uri', 'lblod_id', 'date_created'.
+    The response contains a list of json objects with fields "id", "uri", "lblod_id", "date_created".
     Each object corresponds with an entry stored in the database.
-        'id' represents the id of the entry.
-        'uri' contains the uri of the webID.
-        'lblod' contains the uri of a person in the database.
-        'date_created' contains the date on which the entry was added to the database.
+        "id" represents the id of the entry.
+        "uri" contains the uri of the webID.
+        "lblod" contains the uri of a person in the database.
+        "date_created" contains the date on which the entry was added to the database.
 
         Example:
             [
@@ -106,7 +106,6 @@ async def r_get(req):
                 }
             ]
     """
-
     return response.json(get_web_ids())
 
 
@@ -116,12 +115,12 @@ async def get_handler(req):
     Get all the cities in the database.
 
     Returns:
-    The result contains two value/name pairs: 'success' and 'result'.
-        'success' denotes whether the request was handled successfully.
-        'result' contains the actual result that is a list of json objects that contain 'cityURI', 'cityName' and 'locationLabel'.
-            'cityURI' contains the uri of the city which can be used to identify the city.
-            'cityName' contains the name of the city.
-            'locationLabel' denotes the type of location (Gemeente/Provincie/District).
+    The result contains two value/name pairs: "success" and "result".
+        "success" denotes whether the request was handled successfully.
+        "result" contains the actual result that is a list of json objects that contain "cityURI", "cityName" and "locationLabel".
+            "cityURI" contains the uri of the city which can be used to identify the city.
+            "cityName" contains the name of the city.
+            "locationLabel" denotes the type of location (Gemeente/Provincie/District).
 
         Example:
             {
@@ -157,19 +156,18 @@ async def get_handler(req):
     """
     Get all lists that are active for a given city.
 
-
     Keyword arguments:
-    The request should contain a valid parameter for 'cityURI'.
+    The request should contain a valid parameter for "cityURI".
         Example:
             /lists?cityURI=http://data.lblod.info/id/werkingsgebieden/39173049fa95c468999d3862c3e6d22184c604d0864d6e56d1660886e17ca3c7
 
     Returns:
-    The result contains two value/name pairs: 'success' and 'result'.
-        'success' denotes whether the request was handled successfully.
+    The result contains two value/name pairs: "success" and "result".
+        "success" denotes whether the request was handled successfully.
             This is set to False when the required parameters are not present.
-        'result' contains the actual result that is a list of json objects that contain 'listURI' and 'listName'.
-            'listURI' contains the uri of the list which can be used to identify the list.
-            'listName' contains the name of the list.
+        "result" contains the actual result that is a list of json objects that contain "listURI" and "listName".
+            "listURI" contains the uri of the list which can be used to identify the list.
+            "listName" contains the name of the list.
 
         Example:
             {
@@ -212,19 +210,19 @@ async def get_handler(req):
     Get all candidates that are on a given list.
 
     Keyword arguments:
-    The request should contain a valid parameter for 'listURI'.
+    The request should contain a valid parameter for "listURI".
         Example:
             /candidates?listURI=http://data.lblod.info/id/kandidatenlijsten/078a1ef8-0875-48b2-b8fc-6167f5cfa3c0
 
     Returns:
-    The result contains two value/name pairs: 'success' and 'result'.
-        'success' denotes whether the request was handled successfully.
+    The result contains two value/name pairs: "success" and "result".
+        "success" denotes whether the request was handled successfully.
             This is set to False when the required parameters are not present.
-        'result' contains the actual result that is a list of json objects that contain 'personURI', 'name', 'familyName', <optional>'webID'.
-            'personURI' contains the uri of the person which can be used to identify the list.
-            'name' contains the name of the person.
-            'familyName' contains the family name of the person.
-            'webID'<optional> contains the webID uri that is linked to the person.
+        "result" contains the actual result that is a list of json objects that contain "personURI", "name", "familyName", <optional>"webID".
+            "personURI" contains the uri of the person which can be used to identify the list.
+            "name" contains the name of the person.
+            "familyName" contains the family name of the person.
+            "webID"<optional> contains the webID uri that is linked to the person.
                 This webID field is only present if there is an entry in our database with the personURI.
 
         Example:
@@ -286,22 +284,22 @@ async def get_handler(req):
     Get info about a person given the persons' uri.
 
     Keyword arguments:
-    The request should contain a valid parameter for 'personURI'.
+    The request should contain a valid parameter for "personURI".
         Example:
             /person?lblodURI=http://data.lblod.info/id/personen/4bfe62e576c4f955a3080ad38a213a66a8896e7ac9e6029b5185947b1c8427cc
 
     Returns:
-    The result contains two value/name pairs: 'success' and 'result'.
-        'success' denotes whether the request was handled successfully.
+    The result contains two value/name pairs: "success" and "result".
+        "success" denotes whether the request was handled successfully.
             This is set to False when the required parameters are not present.
-        'result' contains the actual result that is a list of json objects that contain 'name', 'familyName', 'familyName', 'listURI', 'listName', 'trackingNb'.
+        "result" contains the actual result that is a list of json objects that contain "name", "familyName", "familyName", "listURI", "listName", "trackingNb".
             The list can contain multiple entries when the person campaigned for multiple lists.
 
-            'name' contains the name of the person.
-            'familyName' contains the family name of the person.
-            'listURI' contains uri of a list where the person is on.
-            'listName' contains the name of the list.
-            'trackingNb' contains the tracking number of the list.
+            "name" contains the name of the person.
+            "familyName" contains the family name of the person.
+            "listURI" contains uri of a list where the person is on.
+            "listName" contains the name of the list.
+            "trackingNb" contains the tracking number of the list.
 
         Example:
             {
@@ -356,11 +354,11 @@ def get_web_ids():
     Get all the webIDs in the database.
 
     Returns:
-    A list containing a dictionary with keys 'id', 'uri', 'lblod_id' and 'date_created'.
-        'id' contains the id of the entry.
-        'uri' contains the webID  uri of the entry.
-        'lblod_id' contains the uri of the person to which the entry links.
-        'date_created' contains the date on which the entry was added to the database.
+    A list containing a dictionary with keys "id", "uri", "lblod_id" and "date_created".
+        "id" contains the id of the entry.
+        "uri" contains the webID  uri of the entry.
+        "lblod_id" contains the uri of the person to which the entry links.
+        "date_created" contains the date on which the entry was added to the database.
 
         Example:
             [
@@ -378,7 +376,6 @@ def get_web_ids():
                 },
             ]
     """
-
     web_ids = models.WebID.select()
 
     # Convert list of ModelSelect objects to Python dicts
@@ -394,13 +391,12 @@ def get_web_id(lblod_id):
     Get the webID uri for a given lblod id.
 
     Keyword arguments:
-    lblod_id -- the lblod ID that is stored in the database
-        This function will raise a 'DoesNotExist' exception when no entry in the database contains the ID.
+    lblod_id -- string that represents the lblod ID that is stored in the database
+        This function will raise a "DoesNotExist" exception when no entry in the database contains the ID.
 
     Returns
     A string that contains the webID uri of the entry in the database that matches the given lblod ID.
     """
-
     web_id = models.WebID.get(models.WebID.lblod_id == lblod_id)
     return web_id.uri
 
