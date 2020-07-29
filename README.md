@@ -25,3 +25,7 @@ env $(cat .env | xargs) docker stack deploy -c docker-compose-prod.yml solid-ele
 # To update the API container (you can set this up as a webhook)
 docker service update --image solidelections/api solid-elections-api_api
 ```
+
+## Automatic documentation
+Documentation about the api is automatically generated and is available at ./swagger when the server is running.
+See the [documentation!](https://sanic-openapi.readthedocs.io/en/stable/index.html) for info on how to modify the documentation.
