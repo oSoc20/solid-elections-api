@@ -16,7 +16,7 @@ import documentation_models as doc_models
 app = Sanic('Test API')
 app.blueprint(swagger_blueprint)
 app.config["API_TITLE"] = "Solid Elections API"
-app.config["API_DESCRIPTION"] = "API documentation of the Solid Elections API"
+app.config["API_DESCRIPTION"] = "Documentation of the Solid Elections API"
 CORS(app)
 
 
