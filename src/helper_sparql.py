@@ -1,3 +1,6 @@
+"""
+Functions to query the SPARQL database.
+"""
 import requests
 from os import environ
 

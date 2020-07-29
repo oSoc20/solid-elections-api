@@ -1,3 +1,6 @@
+"""
+Postgresql database models.
+"""
 from peewee import Model, PostgresqlDatabase, CharField, DateTimeField
 import datetime
 

@@ -1,3 +1,6 @@
+"""
+Declaration of all the models used in the automatic open-api documentation.
+"""
 from sanic_openapi import doc
 
 
