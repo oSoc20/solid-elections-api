@@ -21,6 +21,13 @@ class BaseModel(Model):
 
 
 class WebID(BaseModel):
+    """
+    The model for linking the web ID uri to the lblod ID uri.
+
+    "uri"           -- The web ID uri of the entry.
+    "lblod_id"      -- The lblod ID uri of the entry.
+    ""date_created" -- The date on which the entyr was created.
+    """
     uri = CharField(unique=True)
     lblod_id = CharField(unique=True)
     date_created = DateTimeField(default=datetime.datetime.now)
