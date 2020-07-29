@@ -4,10 +4,10 @@ from os import environ
 
 def lblod_id_exists(lblod_id):
     """
-    Check if a lblod id exists in the SPARQL database.
+    Check if an lblod ID exists in the SPARQL database.
 
     Keyword arguments:
-    lblod_id -- string that represents the lblod ID of whicht the existence in the database will be checked.
+    lblod_id -- string that represents the lblod ID of which the existence in the database will be checked.
 
     Returns:
     Boolean reflecting whether or not the lblod ID is stored in the database.
@@ -40,7 +40,7 @@ def get_lblod_cities():
 
     Returns:
     A JSON object that is a list of objects with keys "cityURI", "cityName" and "locationLabel".
-        "cityURI" contains the uri of the city which can be used to identify the city.
+        "cityURI" contains the URI of the city which can be used to identify the city.
         "cityName" contains the name of the city.
         "locationLabel" denotes the type of location (Gemeente/Provincie/District).
 
@@ -90,14 +90,14 @@ def get_lblod_cities():
 
 def get_lblod_lists(city_uri):
     """
-    Get all the lists in the database that are acitve in a city with given uri.
+    Get all the lists in the database that are acitve in a city with given URI.
 
     Keyword arguments:
-    city_uri -- string that represents the uri of the city of which all the lists will be searched.
+    city_uri -- string that represents the URI of the city of which all the lists will be searched.
 
     Returns:
     A JSON object that is a list of objects with keys "listURI" and "listName".
-        "listURI" contains the uri of the list which can be used to identify the list.
+        "listURI" contains the URI of the list which can be used to identify the list.
         "listName" contains the name of the list.
 
         Example:
@@ -140,14 +140,14 @@ def get_lblod_lists(city_uri):
 
 def get_lblod_candidates(list_uri):
     """
-    Get all the candidates in the database that campaign(ed) for a list with given uri.
+    Get all the candidates in the database that campaign(ed) for a list with given URI.
 
     Keyword arguments:
-    list_uri -- string that represents the uri of the list of which all the candidates will be searched.
+    list_uri -- string that represents the URI of the list of which all the candidates will be searched.
 
     Returns:
     A JSON object that is a list of objects with keys "personURI", "name" and "familyName".
-        "personURI" contains the uri of the person which can be used to identify the list.
+        "personURI" contains the URI of the person which can be used to identify the list.
         "name" contains the name of the person.
         "familyName" contains the family name of the person.
 
@@ -187,10 +187,10 @@ def get_lblod_candidates(list_uri):
 
 def get_lblod_person_info(person_uri):
     """
-    Get info about the person in the database with given uri.
+    Get info about the person in the database with given URI.
 
     Keyword arguments:
-    person -- string that represents the uri of the person of which the info will be searched.
+    person -- string that represents the URI of the person of which the info will be searched.
 
     Returns:
     A JSON object that is a list of objects with keys "name", "familyName", "listURI", "listName" and "trackingNb".
@@ -198,7 +198,7 @@ def get_lblod_person_info(person_uri):
 
         "name" contains the name of the person.
         "familyName" contains the family name of the person.
-        "listURI" contains uri of a list where the person is on.
+        "listURI" contains URI of a list where the person is on.
         "listName" contains the name of the list.
         "trackingNb" contains the tracking number of the list.
 

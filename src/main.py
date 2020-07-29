@@ -34,7 +34,7 @@ async def handle_response(request, response):
 
 
 @app.route('/store/', methods=['POST'])
-@doc.summary("store a new web id")
+@doc.summary("store a new WebID")
 async def r_store(req):
     """
     Store a new webID in the database given a valid webID uri and a lblod uri.
@@ -82,8 +82,8 @@ async def r_store(req):
 
 
 @app.route('/get')
-@doc.summary("get all the web id's")
-@doc.description("This endpoints can be used to retrieve all the web id's that are stored in the database")
+@doc.summary("get all the WebID's")
+@doc.description("This endpoints can be used to retrieve all the WebIDs that are stored in the database")
 async def r_get(req):
     """
     Get all stored webIDs in the database.
