@@ -3,8 +3,6 @@ import datetime
 
 from os import environ
 
-# TODO: peewee's docs mention a middleware thing for sanic, but it seems to want to reconnect to the database for every request? Maybe check it out
-# http://docs.peewee-orm.com/en/latest/peewee/database.html#sanic
 db = PostgresqlDatabase(host=environ.get('PG_HOST'),
                         database=environ.get('PG_DBNAME'),
                         user=environ.get('PG_USER'),

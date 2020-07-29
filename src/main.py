@@ -354,7 +354,7 @@ def get_web_ids():
     Get all the webIDs in the database.
 
     Returns:
-    A list containing a dictionary with keys "id", "uri", "lblod_id" and "date_created".
+    A list of dictionaries with keys "id", "uri", "lblod_id" and "date_created".
         "id" contains the id of the entry.
         "uri" contains the webID  uri of the entry.
         "lblod_id" contains the uri of the person to which the entry links.

@@ -3,6 +3,15 @@ from os import environ
 
 
 def lblod_id_exists(lblod_id):
+    """
+    Check if a lblod id exists in the SPARQL database.
+
+    Keyword arguments:
+    lblod_id -- string that represents the lblod ID of whicht the existence in the database will be checked.
+
+    Returns:
+    Boolean reflecting whether or not the lblod ID is stored in the database.
+    """
     sparql_url = environ.get('SPARQL_URL')
 
     query = """
@@ -26,6 +35,32 @@ def lblod_id_exists(lblod_id):
 
 
 def get_lblod_cities():
+    """
+    Get all the cities in the database.
+
+    Returns:
+    A JSON object that is a list of objects with keys "cityURI", "cityName", "lacationLabel".
+        "cityURI" contains the uri of the city which can be used to identify the city.
+        "cityName" contains the name of the city.
+        "locationLabel" denotes the type of location (Gemeente/Provincie/District).
+
+        Example:
+            [
+                {
+                    "cityURI": {
+                        "type": "uri",
+                        "value": "http://data.lblod.info/id/bestuurseenheden/81a6c688-9d4e-4905-b5af-c8b2386516e5"
+                    },
+                    "cityName": {
+                        "type": "literal",
+                        "value": "Puurs-Sint-Amands"
+                    },
+                    "locationLabel": {
+                        "type": "literal",
+                        "value": "Gemeente"
+                }
+            ]
+    """
     query = """
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
