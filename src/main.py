@@ -11,6 +11,7 @@ from os import environ
 
 import models
 import helper_sparql
+import documentation_models as doc_models
 
 app = Sanic('Test API')
 app.blueprint(swagger_blueprint)
@@ -35,6 +36,8 @@ async def handle_response(request, response):
 
 @app.route('/store/', methods=['POST'])
 @doc.summary("Store a new webID in the database given a valid webID uri and a lblod uri.")
+@doc.consumes(doc_models.StoreRequestBody, location="body")
+@doc.produces(doc_models.StoreResponse, description="The response formulates the success of the store request.")
 async def r_store(req):
     """
     Store a new webID in the database given a valid webID uri and a lblod uri.
@@ -83,7 +86,8 @@ async def r_store(req):
 
 @app.route('/get')
 @doc.summary("Get all stored webIDs in the database.")
-@doc.description("This endpoints can be used to retrieve all the WebIDs that are stored in the database")
+@doc.description("This endpoints can be used to retrieve all the WebIDs that are stored in the database.")
+@doc.produces(doc.List(doc_models.GetResponseEntry), description="List of all entries in the database.")
 async def r_get(req):
     """
     Get all stored webIDs in the database.
@@ -111,6 +115,7 @@ async def r_get(req):
 
 @app.route('/cities', methods=['GET'])
 @doc.summary("Get all the cities in the database.")
+@doc.produces(doc_models.CityResponse, "The response gives the success of the request as well as the result of the request.")
 async def get_handler(req):
     """
     Get all the cities in the database.
