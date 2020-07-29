@@ -11,7 +11,7 @@ To run this project as a development server, you will need [docker-compose](http
 - **PG_HOST** - The host of the Postgres instance. Default: `db`
 - **PG_DBNAME** - Name of Postgres database. Default: `postgres`
 - **PG_USER** - Name of Postgres user. Default: `postgres`
-- **PG_PASS** - Password to use for this user. Run `pwgen 30 1` to generate a random password.
+- **PG_PASS** - Password to use for this user. Run `pwgen 30 1 -s` to generate a random password.
 
 
 ## Setup (production)
