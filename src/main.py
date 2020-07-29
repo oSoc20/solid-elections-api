@@ -34,7 +34,7 @@ async def handle_response(request, response):
 
 
 @app.route('/store/', methods=['POST'])
-@doc.summary("Store a new webID in the database given a valid webID uri and a lblod uri.")
+@doc.summary("store a new web id")
 async def r_store(req):
     """
     Store a new webID in the database given a valid webID uri and a lblod uri.
@@ -82,7 +82,7 @@ async def r_store(req):
 
 
 @app.route('/get')
-@doc.summary("Get all stored webIDs in the database.")
+@doc.summary("get all the web id's")
 @doc.description("This endpoints can be used to retrieve all the web id's that are stored in the database")
 async def r_get(req):
     """
@@ -110,7 +110,6 @@ async def r_get(req):
 
 
 @app.route('/cities', methods=['GET'])
-@doc.summary("Get all the cities in the database.")
 async def get_handler(req):
     """
     Get all the cities in the database.
@@ -153,7 +152,6 @@ async def get_handler(req):
 
 
 @app.route('/lists', methods=['GET'])
-@doc.summary("Get all lists that are active for a given city.")
 async def get_handler(req):
     """
     Get all lists that are active for a given city.
@@ -207,7 +205,6 @@ async def get_handler(req):
 
 
 @app.route('/candidates', methods=['GET'])
-@doc.summary("Get all candidates that are on a given list.")
 async def get_handler(req):
     """
     Get all candidates that are on a given list.
@@ -282,7 +279,6 @@ async def get_handler(req):
 
 
 @app.route('/person', methods=['GET'])
-@doc.summary("Get info about a person given the persons' uri.")
 async def get_handler(req):
     """
     Get info about a person given the persons' uri.
